@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 using namespace std;
 
@@ -28,19 +29,19 @@ class Team
     void setHomeStatus(bool s) { home_status = s; }
     void setScore(int s) { score = s; }
     void setTimeoutCount(int tc) { timeout_count = tc; }
-    string getName() { return name; }
-    string getCoachName() { return coach_name; }
-    string getHomeCity() { return home_city; }
-    bool getHomeCity() { return home_status; }
-    int getScore() { return score; }
-    int getTimeoutCount() { return timeout_count; }
+    string getName() const { return name; }
+    string getCoachName() const { return coach_name; }
+    string getHomeCity() const { return home_city; }
+    bool getHomeStatus() const { return home_status; }
+    int getScore() const { return score; }
+    int getTimeoutCount() const { return timeout_count; }
 };
 
 class Scoreboard
 {
   private:
-    string T1Name;
-    string T2Name;
+    Team team1;
+    Team team2;
     int qtr;
     int T1Score;
     int T2Score;
@@ -50,34 +51,52 @@ class Scoreboard
   public:
     Scoreboard()
     {
-      T1Name = "DefaultT1Name";
-      T2Name = "DefaultT2Name";
       qtr = 1;
       T1Score = 0;
       T2Score = 0;
       down = 0;
       toGo = 0;
     }
-    void setT1Name(Team t1) { T1Name = t1.getName(); }
-    void setT2Name(Team t2) { T2Name = t2.getName(); }
+    void setTeam1(Team t1) { team1 = t1; }
+    void setTeam2(Team t2) { team2 = t2; }
     void setQTR(int q) { qtr = q; }
     void setT1Score(Team t1) { T1Score = t1.getScore(); }
     void setT2Score(Team t2) { T2Score = t2.getScore(); }
     void setDown(int d) { down = d; }
     void setToGo(int tg) { toGo = tg; }
-    string getT1Name() { return T1Name; }
-    string getT2Name() { return T2Name; }
-    int getQTR() { return qtr; }
-    int getT1Score() { return T1Score; }
-    int getT2Score() { return T2Score; }
-    int getDown() { return down; }
-    int getToGo() { return toGo; }
-
+    Team getTeam1() const { return team1; }
+    Team getTeam2() const { return team2; }
+    int getQTR() const { return qtr; }
+    int getT1Score() const { return T1Score; }
+    int getT2Score() const { return T2Score; }
+    int getDown() const { return down; }
+    int getToGo() const { return toGo; }
+    void printScoreboard()
+    {
+      for(int i = 0; i < 39; i++) { cout << "*"; }
+      cout << endl; 
+      cout << "     (H)\t\t\t\t\t\t(V)" << endl; 
+      cout << setw(10) << team1.getName() << setw(27) << team2.getName() << endl;
+      cout << setw(10) << team1.getCoachName() << setw(27) << team2.getCoachName() << endl;
+      cout << setw(7) << team1.getScore() << setw(27) <<  team2.getScore() << endl;
+      cout << setw(23) << "Quarter: " << qtr << endl; 
+      cout << setw(5) << down << " Down" << setw(21) << toGo << " To Go" << endl;
+      for(int i = 0; i < 39; i++) { cout << "*"; }
+      cout << endl;
+    }
+  
 };
+
+void scoreboardControls()
+{
+  Scoreboard s;
+  Team t1;
+  Team t2;
+
+}
 
 int main() 
 {
-  
 
   return 0;
 } 

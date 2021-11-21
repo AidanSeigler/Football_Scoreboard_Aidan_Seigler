@@ -67,20 +67,26 @@ class Scoreboard
     int getToGo() { return toGo; }
     void printScoreboard()
     {
-      
-      
+      string green_white = "\x1b[" + to_string(42) + ";1m";
+      string blue = "\x1b[" + to_string(34) + ";1m";
+      string yellow = "\x1b[" + to_string(33) + ";1m";
+      string red = "\x1b[" + to_string(31) + ";1m";
+      string reset = "\x1b[0m";
 
-      cout << setw(28) << "Football Scoreboard" << endl;
+
+      cout << setw(17) << green_white << "Football Scoreboard" << reset << endl;
+      cout << red;
       for(int i = 0; i < 39; i++) { cout << "*"; }
-      cout << endl; 
+      cout << reset << endl; 
       cout << setw(8) << "(H)" << setw(27) << "(V)" << endl; 
-      cout << setw(10) << team1.getName() << setw(27) << team2.getName() << endl;
+      cout << setw(5) << blue << team1.getName() << setw(27) << team2.getName() << reset << endl;
       cout << setw(10) << team1.getCoachName() << setw(27) << team2.getCoachName() << endl;
-      cout << setw(7) << team1.getScore() << setw(27) <<  team2.getScore() << endl;
+      cout << setw(13) << yellow << team1.getScore() << setw(27) <<  team2.getScore() << reset << endl;
       cout << setw(23) << "Quarter: " << qtr << endl; 
       cout << setw(5) << down << " Down" << setw(21) << toGo << " To Go" << endl;
+      cout << red;
       for(int i = 0; i < 39; i++) { cout << "*"; }
-      cout << endl;
+      cout << reset << endl;
     }
   
 };

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <unistd.h>
+#include "Input_Validation_Extended.h"
 using namespace std;
 
 class Team
@@ -29,12 +31,12 @@ class Team
     void setHomeStatus(bool s) { home_status = s; }
     void setScore(int s) { score = s; }
     void setTimeoutCount(int tc) { timeout_count = tc; }
-    string getName() const { return name; }
-    string getCoachName() const { return coach_name; }
-    string getHomeCity() const { return home_city; }
-    bool getHomeStatus() const { return home_status; }
-    int getScore() const { return score; }
-    int getTimeoutCount() const { return timeout_count; }
+    string getName() { return name; }
+    string getCoachName() { return coach_name; }
+    string getHomeCity() { return home_city; }
+    bool getHomeStatus() { return home_status; }
+    int getScore() { return score; }
+    int getTimeoutCount() { return timeout_count; }
 };
 
 class Scoreboard
@@ -43,8 +45,6 @@ class Scoreboard
     Team team1;
     Team team2;
     int qtr;
-    int T1Score;
-    int T2Score;
     int down;
     int toGo;
 
@@ -52,30 +52,28 @@ class Scoreboard
     Scoreboard()
     {
       qtr = 1;
-      T1Score = 0;
-      T2Score = 0;
       down = 0;
       toGo = 0;
     }
     void setTeam1(Team t1) { team1 = t1; }
     void setTeam2(Team t2) { team2 = t2; }
     void setQTR(int q) { qtr = q; }
-    void setT1Score(Team t1) { T1Score = t1.getScore(); }
-    void setT2Score(Team t2) { T2Score = t2.getScore(); }
     void setDown(int d) { down = d; }
     void setToGo(int tg) { toGo = tg; }
-    Team getTeam1() const { return team1; }
-    Team getTeam2() const { return team2; }
-    int getQTR() const { return qtr; }
-    int getT1Score() const { return T1Score; }
-    int getT2Score() const { return T2Score; }
-    int getDown() const { return down; }
-    int getToGo() const { return toGo; }
+    Team getTeam1() { return team1; }
+    Team getTeam2() { return team2; }
+    int getQTR() { return qtr; }
+    int getDown() { return down; }
+    int getToGo() { return toGo; }
     void printScoreboard()
     {
+      
+      
+
+      cout << setw(28) << "Football Scoreboard" << endl;
       for(int i = 0; i < 39; i++) { cout << "*"; }
       cout << endl; 
-      cout << "     (H)\t\t\t\t\t\t(V)" << endl; 
+      cout << setw(8) << "(H)" << setw(27) << "(V)" << endl; 
       cout << setw(10) << team1.getName() << setw(27) << team2.getName() << endl;
       cout << setw(10) << team1.getCoachName() << setw(27) << team2.getCoachName() << endl;
       cout << setw(7) << team1.getScore() << setw(27) <<  team2.getScore() << endl;
@@ -92,11 +90,143 @@ void scoreboardControls()
   Scoreboard s;
   Team t1;
   Team t2;
+  char choice = '\0';
+  int newNum = 0;
+  string newName = "";
+
+  s.setTeam1(t1);
+  s.setTeam2(t2);
+
+  do
+  {
+    s.printScoreboard();
+
+    cout << "\nMenu:\n";
+    cout << "1. Set Team 1 Name\n";
+    cout << "2. Set Team 2 Name\n";
+    cout << "3. Set Team 1 Coach\n";
+    cout << "4. Set Team 2 Coach\n";
+    cout << "5. Set Team 1 Score\n";
+    cout << "6. Set Team 2 Score\n";
+    cout << "7. Set Quarter\n";
+    cout << "8. Set Down\n";
+    cout << "9. Set To Go\n\n";
+    cout << "Enter choice: ";
+    choice = validateChar(choice);
+
+    if (choice == '1')
+    {
+      cout << "\nEnter a new name for Team 1: ";
+      newName = validateString(newName);
+
+      cout << "Updating Team 1 name to " << newName << endl;
+      t1.setName(newName);
+      sleep(3);
+    }
+    else if (choice == '2')
+    {
+      cout << "\nEnter a new name for Team 2: ";
+      newName = validateString(newName);
+
+      cout << "Updating Team 2 name to " << newName << endl;
+      t2.setName(newName);
+      sleep(3);
+    }
+    else if (choice == '3')
+    {
+      cout << "\nEnter a new coach for Team 1: ";
+      newName = validateString(newName);
+
+      cout << "Updating Team 1 coach to " << newName << endl;
+      t1.setCoachName(newName);
+      sleep(3);
+    }
+    else if (choice == '4')
+    {
+      cout << "\nEnter a new coach for Team 2: ";
+      newName = validateString(newName);
+
+      cout << "Updating Team 2 coach to " << newName << endl;
+      t2.setCoachName(newName);
+      sleep(3);
+    }
+    else if (choice == '5')
+    {
+      cout << "Enter a new score for Team 1: ";
+      newNum = validateInt(newNum);
+
+      cout << "Updating Team 1 score to " << newNum << endl;
+      t1.setScore(newNum);
+      sleep(3);
+    }
+    else if (choice == '6')
+    {
+      cout << "Enter a new score for Team 2: ";
+      newNum = validateInt(newNum);
+
+      cout << "Updating Team 2 score to " << newNum << endl;
+      t2.setScore(newNum);
+      sleep(3);
+    }
+    else if (choice == '7')
+    {
+      cout << "Enter a new quarter: ";
+      newNum = validateInt(newNum);
+
+      cout << "Updating quarter to " << newNum << endl;
+      s.setQTR(newNum);
+      sleep(3);
+    }
+    else if (choice == '8')
+    {
+      cout << "Enter a new down: ";
+      newNum = validateInt(newNum);
+
+      cout << "Updating down to " << newNum << endl;
+      s.setDown(newNum);
+      sleep(3);
+    }
+    else if (choice == '9')
+    {
+      cout << "Enter a new to go: ";
+      newNum = validateInt(newNum);
+      
+      cout << "Updating to go to " << newNum << endl;
+      s.setToGo(newNum);
+      sleep(3);
+    }
+    s.setTeam1(t1);
+    s.setTeam2(t2);
+    system("clear");
+
+  } while (choice != 'X' || choice != 'x');
 
 }
 
 int main() 
 {
 
+  scoreboardControls();
+
+  cout << "\nGoodbye!\n";
+
   return 0;
 } 
+
+/******************************************************
+
+TODO:
+- Controls
+  - Set T1 Name
+  - Set T2 Name
+  - Set T1 Coach
+  - Set T2 Coach
+  - Set T1 Score
+  - Set T2 Score
+  - Set Quarter
+  - Set Down
+  - Set To Go
+
+- Input Validation
+
+******************************************************/

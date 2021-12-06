@@ -1,3 +1,9 @@
+
+// Created Nov. 20, 2021
+// Assigned by Dr. Tyson McMillian, TCCD
+// The purpose of this assignment was to create a football scoreboard
+// This assignment increased my knowledge of object oriented programming
+
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -116,7 +122,8 @@ void scoreboardControls()
     cout << "6. Set Team 2 Score\n";
     cout << "7. Set Quarter\n";
     cout << "8. Set Down\n";
-    cout << "9. Set To Go\n\n";
+    cout << "9. Set To Go\n";
+    cout << "X. Exit\n\n";
     cout << "Enter choice: ";
     choice = validateChar(choice);
 
@@ -125,7 +132,7 @@ void scoreboardControls()
       cout << "\nEnter a new name for Team 1: ";
       newName = validateString(newName);
 
-      cout << "Updating Team 1 name to " << newName << endl;
+      cout << "Updating Team 1 name to " << newName << "..." << endl;
       t1.setName(newName);
       sleep(3);
     }
@@ -134,7 +141,7 @@ void scoreboardControls()
       cout << "\nEnter a new name for Team 2: ";
       newName = validateString(newName);
 
-      cout << "Updating Team 2 name to " << newName << endl;
+      cout << "Updating Team 2 name to " << newName << "..." << endl;
       t2.setName(newName);
       sleep(3);
     }
@@ -143,7 +150,7 @@ void scoreboardControls()
       cout << "\nEnter a new coach for Team 1: ";
       newName = validateString(newName);
 
-      cout << "Updating Team 1 coach to " << newName << endl;
+      cout << "Updating Team 1 coach to " << newName << "..." << endl;
       t1.setCoachName(newName);
       sleep(3);
     }
@@ -152,7 +159,7 @@ void scoreboardControls()
       cout << "\nEnter a new coach for Team 2: ";
       newName = validateString(newName);
 
-      cout << "Updating Team 2 coach to " << newName << endl;
+      cout << "Updating Team 2 coach to " << newName << "..." << endl;
       t2.setCoachName(newName);
       sleep(3);
     }
@@ -161,7 +168,7 @@ void scoreboardControls()
       cout << "Enter a new score for Team 1: ";
       newNum = validateInt(newNum);
 
-      cout << "Updating Team 1 score to " << newNum << endl;
+      cout << "Updating Team 1 score to " << newNum << "..." << endl;
       t1.setScore(newNum);
       sleep(3);
     }
@@ -170,7 +177,7 @@ void scoreboardControls()
       cout << "Enter a new score for Team 2: ";
       newNum = validateInt(newNum);
 
-      cout << "Updating Team 2 score to " << newNum << endl;
+      cout << "Updating Team 2 score to " << newNum << "..." << endl;
       t2.setScore(newNum);
       sleep(3);
     }
@@ -179,7 +186,7 @@ void scoreboardControls()
       cout << "Enter a new quarter: ";
       newNum = validateInt(newNum);
 
-      cout << "Updating quarter to " << newNum << endl;
+      cout << "Updating quarter to " << newNum << "..." << endl;
       s.setQTR(newNum);
       sleep(3);
     }
@@ -188,7 +195,7 @@ void scoreboardControls()
       cout << "Enter a new down: ";
       newNum = validateInt(newNum);
 
-      cout << "Updating down to " << newNum << endl;
+      cout << "Updating down to " << newNum << "..." << endl;
       s.setDown(newNum);
       sleep(3);
     }
@@ -197,7 +204,7 @@ void scoreboardControls()
       cout << "Enter a new to go: ";
       newNum = validateInt(newNum);
       
-      cout << "Updating to go to " << newNum << endl;
+      cout << "Updating to go to " << newNum << "..." << endl;
       s.setToGo(newNum);
       sleep(3);
     }
@@ -205,7 +212,7 @@ void scoreboardControls()
     s.setTeam2(t2);
     system("clear");
 
-  } while (choice != 'X' || choice != 'x');
+  } while (choice != 'X' && choice != 'x');
 
 }
 
@@ -218,21 +225,3 @@ int main()
 
   return 0;
 } 
-
-/******************************************************
-
-TODO:
-- Controls
-  - Set T1 Name
-  - Set T2 Name
-  - Set T1 Coach
-  - Set T2 Coach
-  - Set T1 Score
-  - Set T2 Score
-  - Set Quarter
-  - Set Down
-  - Set To Go
-
-- Input Validation
-
-******************************************************/
